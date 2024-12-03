@@ -1,0 +1,97 @@
+// C++ code
+//
+ 
+//Quarto 1
+int led1 = 7;
+//Quarto 2
+int led2 = 6;
+//Quarto 3
+int led3 = 5;
+//Quarto 4
+int led4 = 4;
+ 
+int quarto1;
+int quarto2;
+int quarto3;
+int quarto4;
+ 
+int start = 0;
+ 
+void setup()
+{
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
+  Serial.begin(9600);
+}
+ 
+void loop()
+{
+ if(start == 0){  
+ 
+      Serial.println("\n\n\n\nOs comandos do programa sao: \n ALLON -> Acende todos \n ALLOFF -> Apaga todos \n Q(numero do quarto)-> exemplo(Q1) ascende quarto 1 de forma indenpendente.");
+      start =1;
+ 
+    }
+  if(Serial.available() > 0) {
+    String valorSerialLido = Serial.readString();
+    Serial.flush();
+ 
+    if(valorSerialLido == "Q1" || valorSerialLido == "q1"){
+      if (quarto1 == 1){
+        digitalWrite(led1,LOW);
+      } else {
+        digitalWrite(led1,HIGH);
+        quarto1 = 1;
+      }
+    }
+ 
+ 
+    if(valorSerialLido == "Q2" || valorSerialLido == "q2"){
+      if (quarto2 == 1){
+        digitalWrite(led2,LOW);
+      } else {
+        digitalWrite(led2,HIGH);
+        quarto2 = 1;
+      }
+    }
+ 
+ 
+ 
+    if(valorSerialLido == "Q3" || valorSerialLido == "q3"){
+      if (quarto3 == 1){
+        digitalWrite(led3,LOW);
+      } else {
+        digitalWrite(led3,HIGH);
+        quarto3 = 1;
+      }
+    }
+ 
+ 
+ 
+    if(valorSerialLido == "Q4" || valorSerialLido == "q4"){
+      if (quarto4 == 1){
+        digitalWrite(led4,LOW);
+      } else {
+        digitalWrite(led4,HIGH);
+        quarto4 = 1;
+      }
+    }
+     if(valorSerialLido == "ALLON" || valorSerialLido == "allon"){
+       digitalWrite(led1,HIGH);
+       digitalWrite(led2,HIGH);
+       digitalWrite(led3,HIGH);
+       digitalWrite(led4,HIGH);
+     }
+     if(valorSerialLido == "ALLOFF" || valorSerialLido == "alloff"){
+       digitalWrite(led1,LOW);
+       digitalWrite(led2,LOW);
+       digitalWrite(led3,LOW);
+       digitalWrite(led4,LOW);
+     }
+    if(valorSerialLido == "HELP" || valorSerialLido == "help"){
+       Serial.println("Os comandos do programa sao: \n ALLON -> Acende todos \n ALLOFF -> Apaga todos \n Q(numero do quarto)-> exemplo(Q1) ascende quarto 1 de forma indenpendente.");
+    }
+  }
+}
